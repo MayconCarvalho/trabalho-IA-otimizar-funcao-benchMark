@@ -1,6 +1,4 @@
-from functools import reduce
 from numpy import random
-
 from IndividuoFactory import IndividuoFactory
 
 

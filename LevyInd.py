@@ -68,19 +68,6 @@ class LevyInd(Individuo):
     def __getitem__(self, item):
         return self.__genes[item]
 
-    def __add__(self, other) -> float:
-        if not isinstance(other, float):
-            other = float(other.get_avaliacao())
-
-        if self.get_avaliacao() != 0 and other != 0:
-            return 1. / self._avaliacao + 1. / other
-        elif self.get_avaliacao() != 0 and other == 0:
-            return 1. / self._avaliacao
-        elif self.get_avaliacao() == 0 and other != 0:
-            return 1. / other
-        else:
-            return 0.0
-
     def __lt__(self, other):
         return self.get_avaliacao() <= other.get_avaliacao()
 
