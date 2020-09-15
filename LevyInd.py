@@ -29,8 +29,23 @@ class LevyInd(Individuo):
         return [f1, f2]
 
     def mutar(self):
+        mutou = False
+        mut = LevyInd(self.__d, False)
+        for i in range(self.__d):
+            num = random.rand()
+            if num < 0.1:
+                num = self.__genes[i] + random.normal()
+                mut[i] = num if -10 < num < 10 else -10 if num < -10 else 10
+                mutou = True
+            else:
+                mut[i] = self.__genes[i]
 
-        return []
+        if mutou is False:
+            j = random.randint(0, self.__d)
+            num = self.__genes[j] + random.normal()
+            mut[j] = num if -10 < num < 10 else -10 if num < -10 else 10
+
+        return mut
 
     def get_avaliacao(self) -> float:
         if self.__calcExec is False:
