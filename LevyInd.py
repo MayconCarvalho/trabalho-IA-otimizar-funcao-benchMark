@@ -49,10 +49,10 @@ class LevyInd(Individuo):
 
     def get_avaliacao(self) -> float:
         if self.__calcExec is False:
-            self._avaliacao = sin(pi * self.w_i(1)) ** 2
+            self._avaliacao = sin(pi * self.w_i(0)) ** 2
             for i in range(0, self.__d - 2):
                 self._avaliacao += (self.w_i(i) - 1) ** 2 * (1 + 10 * sin(pi * self.w_i(i) + 1) ** 2)
-                self._avaliacao += (self.w_i(self.__d - 1) - 1) ** 2 * (1 + sin(2 * pi * self.w_i(self.__d - 1)))
+                self._avaliacao += (self.w_i(self.__d - 1) - 1) ** 2 * (1 + sin(2 * pi * self.w_i(self.__d - 1)) ** 2)
 
         return self._avaliacao
 
@@ -64,6 +64,9 @@ class LevyInd(Individuo):
 
     def __setitem__(self, key, value):
         self.__genes[key] = value
+
+    def __getitem__(self, item):
+        return self.__genes[item]
 
     def __add__(self, other) -> float:
         if not isinstance(other, float):
