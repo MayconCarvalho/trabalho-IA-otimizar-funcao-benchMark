@@ -40,8 +40,7 @@ class FGA:
             while len(newPop) < nElite:
                 if aux[j] not in newPop:
                     newPop.append(aux[j])
-                    aux.pop(j)
-                j += 1
+                aux.pop(j)
 
             # roleta viciada adicionado os outros individuos na lista
             while len(newPop) < nPop:
@@ -62,5 +61,6 @@ class FGA:
                 aux.pop(j)
 
             popInicial = newPop
+            popInicial.sort()
             print(f'Nº geração: {g}', end=' | ')
             print(f'Melhor individuo: \'{popInicial[0]}\'')
