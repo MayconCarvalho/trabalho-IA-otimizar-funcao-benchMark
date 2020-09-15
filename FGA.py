@@ -45,15 +45,23 @@ class FGA:
             # roleta viciada adicionado os outros individuos na lista
             while len(newPop) < nPop:
                 # soma das avaliacoes de todos os individuos
-                soma = reduce(lambda x, y: y + x, aux)
+                soma = 0
+                for i in aux:
+                    aval = i.get_avaliacao()
+                    soma += 1. / aval if aval != 0 else 0
                 # valor aleatorio gerado pela roleta
-                roleta = random.random() * soma
+                r = random.random()
+                roleta = r * soma
                 roletaParcial = 0
                 j = 0
+                # buscando elemento a ser inserido na nova lista usando roleta
                 while roletaParcial < roleta:
                     if aux[j].get_avaliacao() != 0:
                         roletaParcial += 1. / aux[j].get_avaliacao()
                     j += 1
+
+                if j == len(aux):
+                    j -= 1
 
                 if aux[j] not in newPop:
                     newPop.append(aux[j])
