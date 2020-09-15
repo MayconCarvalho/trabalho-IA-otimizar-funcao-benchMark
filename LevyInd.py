@@ -24,7 +24,7 @@ class LevyInd(Individuo):
 
         for i in range(self.__d):
             f1[i] = (1 - alpha) * self.__genes[i] + alpha * ind.get_genes()[i]
-            f2[i] = (1 - alpha) * self.__genes[i] + alpha * ind.get_genes()[i]
+            f2[i] = (1 - alpha) * ind.get_genes()[i] + alpha * self.__genes[i]
 
         return [f1, f2]
 
@@ -83,6 +83,9 @@ class LevyInd(Individuo):
 
     def __lt__(self, other):
         return self.get_avaliacao() <= other.get_avaliacao()
+
+    def __eq__(self, other):
+        return self._avaliacao == other.get_avaliacao()
 
     def __str__(self):
         return f'avaliacao: {self._avaliacao}, ' \
